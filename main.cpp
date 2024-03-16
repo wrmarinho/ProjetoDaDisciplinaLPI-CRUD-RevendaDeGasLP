@@ -2,42 +2,43 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include <Windows.h>
 #include "produto.h"
-#include "estoque.h"
+#include "gerenciadorProduto.h"
 
 using namespace std;
 
 int main() {
-    EstoqueManager estoqueManager;
-
+    
+    SetConsoleOutputCP(CP_UTF8);
+    
+    GerenciadorProduto gerenciador;
     int opcao;
     do {
         cout << "\n\t-----Sistema de Cadastro e Venda de Produtos-----\n\n";
-        cout << "\t1. Inserir" << endl;
-        cout << "\t2. Listar todos" << endl;
-        cout << "\t3. Pesquisar produto" << endl;
-        cout << "\t4. Venda" << endl;
-        cout << "\t5. Remover" << endl;
-        cout << "\t6. Exibir Relatório" << endl;
-        cout << "\t7. Sair" << endl;
-        cout << "\n\tEscolha uma opção: ";
+        cout << "\t1. Inserir\n";
+        cout << "\t2. Listar todos\n";
+        cout << "\t3. Pesquisar produto\n";
+        cout << "\t4. Venda\n";
+        cout << "\t5. Remover\n";
+        cout << "\t6. Exibir Relatorio\n";
+        cout << "\t7. Sair\n";
+        cout << "\n\tEscolha uma opcao: ";
         cin >> opcao;
-        system("cls||cls");
+        system("cls");
 
         switch (opcao) {
             case 1: {
                 string nome;
                 int quantidade;
-                float precoUnitario;
-                cout << "\n\t-----Sistema de Cadastro e Venda de Produtos-----\n\n";
+                float preco;
                 cout << "\tDigite o nome do produto: ";
                 cin >> nome;
-                cout << "\tDigite a quantidade do produto: ";
+                cout << "\tDigite a quantidade: ";
                 cin >> quantidade;
-                cout << "\tDigite o preço unitário do produto: ";
-                cin >> precoUnitario;
-                Produto* produto = new Produto(nome, quantidade, precoUnitario);
-                estoqueManager.inserir(produto);
+                cout << "\tDigite o preco: ";
+                cin >> preco;
+                gerenciador.inserir(new Produto(nome, quantidade, preco));
                 cout << "\n\tProduto inserido com sucesso!" << endl;
                 cout << "\n\tDigite enter para voltar ao menu.";
                 char menu;
@@ -50,7 +51,7 @@ int main() {
             }
             case 2:
                 cout << "\n\t-----Sistema de Cadastro e Venda de Produtos-----\n\n";
-                estoqueManager.listarTodos();
+                gerenciador.listarTodos();
                 cout << "\n\tDigite enter para voltar ao menu.";
                 char menu;
                 scanf("%*c");
@@ -60,36 +61,39 @@ int main() {
                 }
                 break;
             case 3: {
-                string nome;
                 cout << "\n\t-----Sistema de Cadastro e Venda de Produtos-----\n\n";
+                string nome;
                 cout << "\tDigite o nome do produto: ";
                 cin >> nome;
-                system("cls||cls");
-                cout << "\n\t-----Sistema de Cadastro e Venda de Produtos-----\n\n";    
-                Produto* produto = estoqueManager.pesquisar(nome);
-                if (produto != nullptr) {
-                    produto->exibirInformacoes();
-                    cout << "\n\tDigite enter para voltar ao menu.";
-                    char menu;
-                    scanf("%*c");
-                    scanf("%c", &menu);
-                    if(menu == '\n'){
-                        system("cls");
-                }
+                int indice = gerenciador.pesquisar(nome);
+                if (indice != -1) {
+                    gerenciador.obterProduto(indice)->exibir();
                 } else {
-                    cout << "\tProduto não encontrado!" << endl;
+                    cout << "\tProduto nao encontrado." << endl;
+                }
+                cout << "\n\tDigite enter para voltar ao menu.";
+                char menu;
+                scanf("%*c");
+                scanf("%c", &menu);
+                if(menu == '\n'){
+                    system("cls");
                 }
                 break;
             }
             case 4: {
-                string nome;
-                int quantidade;
                 cout << "\n\t-----Sistema de Cadastro e Venda de Produtos-----\n\n";
-                cout << "\tDigite o nome do produto: ";
+                string nome;
+                cout << "\tDigite o nome do produto a ser vendido: ";
                 cin >> nome;
-                cout << "\tDigite a quantidade a ser vendida: ";
-                cin >> quantidade;
-                estoqueManager.vender(nome, quantidade);
+                int indice = gerenciador.pesquisar(nome);
+                if (indice != -1) {
+                    int quantidadeVendida;
+                    cout << "\tDigite a quantidade a ser vendida: ";
+                    cin >> quantidadeVendida;
+                    gerenciador.venderProduto(indice, quantidadeVendida);
+                } else {
+                    cout << "\tProduto nao encontrado." << endl;
+                }
                 cout << "\n\tDigite enter para voltar ao menu.";
                 char menu;
                 scanf("%*c");
@@ -99,12 +103,19 @@ int main() {
                 }
                 break;
             }
+
             case 5: {
-                string nome;
                 cout << "\n\t-----Sistema de Cadastro e Venda de Produtos-----\n\n";
+                string nome;
                 cout << "\tDigite o nome do produto a ser removido: ";
                 cin >> nome;
-                estoqueManager.remover(nome);
+                int indice = gerenciador.pesquisar(nome);
+                if (indice != -1) {
+                    gerenciador.remover(indice);
+                    cout << "\tProduto removido com sucesso." << endl;
+                } else {
+                    cout << "\tProduto nao encontrado." << endl;
+                }
                 cout << "\n\tDigite enter para voltar ao menu.";
                 char menu;
                 scanf("%*c");
@@ -114,9 +125,9 @@ int main() {
                 }
                 break;
             }
-            case 6: {
+            case 6:{
                 cout << "\n\t-----Sistema de Cadastro e Venda de Produtos-----\n\n";
-                estoqueManager.exibirRelatorio();
+                gerenciador.exibirRelatorio();
                 cout << "\n\tDigite enter para voltar ao menu.";
                 char menu;
                 scanf("%*c");
@@ -127,11 +138,10 @@ int main() {
                 break;
             }
             case 7:
-                cout << "\tSaindo do programa..." << endl;
+                cout << "\tSaindo..." << endl;
                 break;
             default:
-                cout << "\tOpção inválida!" << endl;
-            
+                cout << "\tOpcao invalida." << endl;
         }
     } while (opcao != 7);
 

@@ -1,30 +1,14 @@
 #include "produto.h"
 
-Produto::Produto(string _nome, int _quantidade, float _precoUnitario)
-        : nome(_nome), quantidade(_quantidade), precoUnitario(_precoUnitario) {}
+Produto::Produto(std::string _nome, int _quantidade, float _preco) : nome(_nome), quantidade(_quantidade), preco(_preco) {}
 
-void Produto::exibirInformacoes() {
-    cout << "\tNome: " << nome << endl;
-    cout << "\tQuantidade: " << quantidade << endl;
-    cout << "\tPreço Unitário: " << precoUnitario << endl;
+Produto::~Produto() {};
+    
+float Produto::calcularValorTotal() const { return quantidade * preco; }
+    
+void Produto::exibir() const {
+    std::cout << "\tNome: " << nome << ", Quantidade: " << quantidade << ", Preco: " << preco << std::endl;
 }
-
-float Produto::calcularTotal() {
-    return quantidade * precoUnitario;
-}
-
-string Produto::getNome() {
-    return nome;
-}
-
-int Produto::getQuantidade() {
-    return quantidade;
-}
-
-float Produto::getPrecoUnitario() {
-    return precoUnitario;
-}
-
-void Produto::setQuantidade(int _quantidade) {
-    quantidade = _quantidade;
-}
+std::string Produto::getNome() const { return nome; }
+int Produto::getQuantidade() const { return quantidade; }
+void Produto::setQuantidade(int qtd) { quantidade = qtd; }

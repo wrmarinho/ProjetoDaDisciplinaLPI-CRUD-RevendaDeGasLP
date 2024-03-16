@@ -1,18 +1,17 @@
 #pragma once
 #include <iostream>
-using namespace std;
 
 class Produto {
 protected:
-    string nome;
+    std::string nome;
     int quantidade;
-    float precoUnitario;
+    float preco;
 public:
-    Produto(string, int, float);
-    virtual void exibirInformacoes();
-    virtual float calcularTotal();
-    string getNome();
-    int getQuantidade();
-    float getPrecoUnitario();
+    Produto(std::string, int, float);
+    virtual ~Produto();
+    virtual float calcularValorTotal() const;
+    virtual void exibir() const;
+    std::string getNome() const;
+    int getQuantidade() const;
     void setQuantidade(int);
 };
