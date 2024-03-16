@@ -32,6 +32,7 @@ int main() {
                 string nome;
                 int quantidade;
                 float preco;
+                cout << "\n\t-----Sistema de Cadastro e Venda de Produtos-----\n\n";
                 cout << "\tDigite o nome do produto: ";
                 cin >> nome;
                 cout << "\tDigite a quantidade: ";
