@@ -11,19 +11,13 @@ private:
 public:
     GerenciadorProduto();
     ~GerenciadorProduto();
-
     void inserir(Produto*);
     void listarTodos() const ;
-
-    int pesquisar(std::string) const ;
-
-    Produto* obterProduto(int indice) const ;
-
+    int pesquisar(std::string) const;
+    Produto* obterProduto(int indice) const;
     void remover(int) ;
-
     void exibirRelatorio() const;
-    void carregarDados() ;
-
+    void carregarDados();
     void salvarDados() const;
     void limparDados();
     void venderProduto(int , int );
