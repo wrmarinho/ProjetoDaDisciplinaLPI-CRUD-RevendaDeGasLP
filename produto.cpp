@@ -4,11 +4,19 @@ Produto::Produto(std::string _nome, int _quantidade, float _preco) : nome(_nome)
 
 Produto::~Produto() {};
     
-float Produto::calcularValorTotal() const { return quantidade * preco; }
+float Produto::calcularValorTotal() const {
+     return quantidade * preco;
+     }
     
 void Produto::exibir() const {
     std::cout << "\tNome: " << nome << ", Quantidade: " << quantidade << ", Preco: " << preco << std::endl;
 }
-std::string Produto::getNome() const { return nome; }
-int Produto::getQuantidade() const { return quantidade; }
-void Produto::setQuantidade(int qtd) { quantidade = qtd; }
+std::string Produto::getNome() const { 
+    return nome;
+     }
+int Produto::getQuantidade() const { 
+    return quantidade; 
+    }
+void Produto::setQuantidade(int qtd) {
+     quantidade = qtd; 
+     }
