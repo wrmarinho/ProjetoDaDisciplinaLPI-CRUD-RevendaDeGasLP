@@ -5,6 +5,9 @@
 #include <Windows.h>
 #include "produto.h"
 #include "gerenciadorProduto.h"
+#include "pessoa.h"
+#include "cliente.h"
+#include "funcionario.h"
 
 using namespace std;
 
@@ -13,21 +16,26 @@ int main() {
     SetConsoleOutputCP(CP_UTF8);
     
     GerenciadorProduto gerenciador;
+
     int opcao;
     do {
         cout << "\n\t-----Sistema de Cadastro e Venda de Produtos-----\n\n";
+        cout << "\t0. Sair\n";
         cout << "\t1. Inserir\n";
         cout << "\t2. Listar todos\n";
         cout << "\t3. Pesquisar produto\n";
         cout << "\t4. Venda\n";
         cout << "\t5. Remover\n";
         cout << "\t6. Exibir Relatorio\n";
-        cout << "\t7. Sair\n";
+        cout << "\t7. Cadastrar cliente\n";
+        cout << "\t8. Cadastrar funcionário\n";
         cout << "\n\tEscolha uma opcao: ";
         cin >> opcao;
         system("cls");
 
         switch (opcao) {
+            case 0:
+                return 0;
             case 1: {
                 string nome;
                 int quantidade;
@@ -50,7 +58,7 @@ int main() {
                 }
                 break;
             }
-            case 2:
+            case 2: {
                 cout << "\n\t-----Sistema de Cadastro e Venda de Produtos-----\n\n";
                 gerenciador.listarTodos();
                 cout << "\n\tDigite enter para voltar ao menu.";
@@ -61,6 +69,7 @@ int main() {
                     system("cls");
                 }
                 break;
+            }
             case 3: {
                 cout << "\n\t-----Sistema de Cadastro e Venda de Produtos-----\n\n";
                 string nome;
@@ -104,7 +113,6 @@ int main() {
                 }
                 break;
             }
-
             case 5: {
                 cout << "\n\t-----Sistema de Cadastro e Venda de Produtos-----\n\n";
                 string nome;
@@ -126,7 +134,7 @@ int main() {
                 }
                 break;
             }
-            case 6:{
+            case 6: {
                 cout << "\n\t-----Sistema de Cadastro e Venda de Produtos-----\n\n";
                 gerenciador.exibirRelatorio();
                 cout << "\n\tDigite enter para voltar ao menu.";
@@ -137,14 +145,47 @@ int main() {
                     system("cls");
                 }
                 break;
-            }
-            case 7:
-                cout << "\tSaindo..." << endl;
+            case 7: {
+                cout << "\n\t-----Sistema de Cadastro e Venda de Produtos-----\n\n";
+                cout << "\nCadastrar cliente:\n";
+                Pessoa* cliente = new Cliente("A", 1, "B");
+                cliente->exibir();
+                delete cliente;
+                cout << "\n\tDigite enter para voltar ao menu.";
+                char menu;
+                scanf("%*c");
+                scanf("%c", &menu);
+                if(menu == '\n'){
+                    system("cls");
+                }
                 break;
-            default:
+            }
+            case 8: {
+                cout << "\n\t-----Sistema de Cadastro e Venda de Produtos-----\n\n";
+                cout << "\timplantar";
+                cout << "\n\tDigite enter para voltar ao menu.";
+                char menu;
+                scanf("%*c");
+                scanf("%c", &menu);
+                if(menu == '\n'){
+                    system("cls");
+                }
+                break;
+            }
+            default: {
+                cout << "\n\t-----Sistema de Cadastro e Venda de Produtos-----\n\n";
                 cout << "\tOpcao invalida." << endl;
+                cout << "\n\tDigite enter para voltar ao menu.";
+                char menu;
+                scanf("%*c");
+                scanf("%c", &menu);
+                if(menu == '\n'){
+                    system("cls");
+                }
+            }}
         }
-    } while (opcao != 7);
+            
+    } while (opcao != 9);
 
     return 0;
 }
