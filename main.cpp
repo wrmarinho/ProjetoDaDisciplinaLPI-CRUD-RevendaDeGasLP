@@ -147,9 +147,15 @@ int main() {
                 break;
             case 7: {
                 cout << "\n\t-----Sistema de Cadastro e Venda de Produtos-----\n\n";
-                cout << "\nCadastrar cliente:\n";
-                Pessoa* cliente = new Cliente("A", 1, "B");
-                cliente->exibir();
+                cout << "\n\t-----Cadastrar cliente-----\n\n";
+                string nome;
+                string endereco;
+                cout << "\tDigite o nome do cliente: ";
+                cin >> nome;
+                cout << "\tDigite o endereço do cliente: ";
+                cin >> endereco;
+                Pessoa* cliente = new Cliente(nome, endereco);
+                //cliente->exibir();
                 delete cliente;
                 cout << "\n\tDigite enter para voltar ao menu.";
                 char menu;

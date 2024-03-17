@@ -4,8 +4,8 @@ class Cliente : public Pessoa {
 private:
     string endereco;
 public:
-    Cliente(string _nome, int _idade, string _endereco) : Pessoa(_nome, _idade), endereco(_endereco) {cout << "Construido";}
-    ~Cliente(){cout << "Destruido";}
+    Cliente(string _nome, string _endereco) : Pessoa(_nome), endereco(_endereco) {}
+    ~Cliente(){}
     
     void exibir() const override {
         Pessoa::exibir();

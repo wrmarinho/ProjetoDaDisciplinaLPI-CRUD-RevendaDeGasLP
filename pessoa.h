@@ -6,11 +6,10 @@ using namespace std;
 class Pessoa {
 protected:
     string nome;
-    int idade;
 public:
-    Pessoa(string _nome, int _idade) : nome(_nome), idade(_idade) {cout << "Construido";}
-    virtual ~Pessoa() { cout << "Destruido";}
+    Pessoa(string _nome) : nome(_nome) {}
+    virtual ~Pessoa() {}
     virtual void exibir() const {
-        cout << "Nome: " << nome << ", Idade: " << idade;
+        cout << "\tNome: " << nome;
     }
 };
