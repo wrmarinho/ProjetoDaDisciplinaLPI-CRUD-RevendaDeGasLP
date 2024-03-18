@@ -28,70 +28,58 @@ int GerenciadorCliente::pesquisar(std::string nome) const {
     return -1;
 }
 
-Produto* GerenciadorProduto::obterProduto(int indice) const {
-    if (indice >= 0 && indice < produtos.size()) {
-        return produtos[indice];
+Cliente* GerenciadorCliente::obterCliente(int indice) const {
+    if (indice >= 0 && indice < clientes.size()) {
+        return clientes[indice];
     }
     return nullptr;
 }
 
-void GerenciadorProduto::remover(int indice) {
-    if (indice >= 0 && indice < produtos.size()) {
-        delete produtos[indice];
-        produtos.erase(produtos.begin() + indice);
+void GerenciadorCliente::remover(int indice) {
+    if (indice >= 0 && indice < clientes.size()) {
+        delete clientes[indice];
+        clientes.erase(clientes.begin() + indice);
     }
 }
 
-void GerenciadorProduto::exibirRelatorio() const {
-    cout << "\tRelatorio de Estoque:" << std::endl;
-    cout << "\tQuantidade de Produtos: " << produtos.size() << std::endl;
+/*
+void GerenciadorCliente::exibirRelatorio() const {
+    cout << "\tRelatorio de Clientes:" << std::endl;
+    cout << "\tQuantidade de Clientes: " << clientes.size() << std::endl;
     float valorTotal = 0.0;
-    for (const auto& produto : produtos) {
-        valorTotal += produto->calcularValorTotal();
+    for (const auto& cliente : clientes) {
+        valorTotal += cliente->calcularValorTotal();
     }
     cout << "\tValor Total do Estoque: " << valorTotal << std::endl;
 }
 
-void GerenciadorProduto::carregarDados() {
+*/
+
+void GerenciadorCliente::carregarDados() {
     ifstream arquivoEntrada(arquivo);
     if (arquivoEntrada.is_open()) {
         string nome;
-        int quantidade;
-        float preco;
-        while (arquivoEntrada >> nome >> quantidade >> preco) {
-            inserir(new Produto(nome, quantidade, preco));
+        string endereco;
+        while (arquivoEntrada >> nome >> endereco) {
+            inserir(new Cliente(nome, endereco));
         }
         arquivoEntrada.close();
     }
 }
 
-void GerenciadorProduto::salvarDados() const {
+void GerenciadorCliente::salvarDados() const {
     ofstream arquivoSaida(arquivo);
     if (arquivoSaida.is_open()) {
-        for (const auto& produto : produtos) {
-            arquivoSaida << produto->getNome() << " " << produto->getQuantidade() << " " << produto->calcularValorTotal() << std::endl;
+        for (const auto& cliente : clientes) {
+            arquivoSaida << cliente->getNome() << std::endl;
         }
         arquivoSaida.close();
     }
 }
 
-void GerenciadorProduto::limparDados() {
-    for (auto& produto : produtos) {
-        delete produto;
+void GerenciadorCliente::limparDados() {
+    for (auto& cliente : clientes) {
+        delete cliente;
     }
-    produtos.clear();
-}
-
-void GerenciadorProduto::venderProduto(int indice, int quantidadeVendida) {
-    Produto* produto = obterProduto(indice);
-    if (produto != nullptr) {
-        if (produto->getQuantidade() >= quantidadeVendida) {
-            produto->setQuantidade(produto->getQuantidade() - quantidadeVendida);
-            cout << "Venda realizada com sucesso." << std::endl;
-        } else {
-            cout << "Quantidade insuficiente em estoque para a venda." << std::endl;
-        }
-    } else {
-        cout << "Produto nao encontrado." << std::endl;
-    }
+    clientes.clear();
 }

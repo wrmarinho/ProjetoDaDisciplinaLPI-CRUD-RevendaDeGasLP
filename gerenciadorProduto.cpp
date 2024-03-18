@@ -87,11 +87,11 @@ void GerenciadorProduto::venderProduto(int indice, int quantidadeVendida) {
     if (produto != nullptr) {
         if (produto->getQuantidade() >= quantidadeVendida) {
             produto->setQuantidade(produto->getQuantidade() - quantidadeVendida);
-            cout << "Venda realizada com sucesso." << std::endl;
+            cout << "\tVenda realizada com sucesso." << std::endl;
         } else {
-            cout << "Quantidade insuficiente em estoque para a venda." << std::endl;
+            cout << "\tQuantidade insuficiente em estoque para a venda." << std::endl;
         }
     } else {
-        cout << "Produto nao encontrado." << std::endl;
+        cout << "\tProduto nao encontrado." << std::endl;
     }
 }

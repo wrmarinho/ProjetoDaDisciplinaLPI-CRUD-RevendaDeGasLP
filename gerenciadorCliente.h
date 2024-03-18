@@ -14,7 +14,7 @@ public:
     void inserir(Cliente*);
     void listarTodos() const ;
     int pesquisar(std::string) const;
-    Cliente* obterProduto(int indice) const;
+    Cliente* obterCliente(int indice) const;
     void remover(int) ;
     void exibirRelatorio() const;
     void carregarDados();
