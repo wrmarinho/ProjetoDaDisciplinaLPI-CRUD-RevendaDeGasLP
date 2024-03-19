@@ -33,16 +33,16 @@ int main(){
 
     do {
         cout << "\n\t-----Sistema de Cadastro e Venda de Produtos-----\n\n";
-        cout << "\t0. Sair\n";
-        cout << "\t1. Inserir\n";
-        cout << "\t2. Listar todos\n";
+        cout << "\t1. Inserir produto\n";
+        cout << "\t2. Listar produtos\n";
         cout << "\t3. Pesquisar produto\n";
         cout << "\t4. Venda\n";
-        cout << "\t5. Remover\n";
-        cout << "\t6. Exibir Relatorio\n";
+        cout << "\t5. Remover produto\n";
+        cout << "\t6. Exibir Relatorio de produto\n";
         cout << "\t7. Cadastrar cliente\n";
         cout << "\t8. Listar clientes\n";
         cout << "\t9. Excluir clientes\n";
+        cout << "\t0. Sair\n";
         cout << "\n\tEscolha uma opcao: ";
         cin >> opcao;
         system("cls");
