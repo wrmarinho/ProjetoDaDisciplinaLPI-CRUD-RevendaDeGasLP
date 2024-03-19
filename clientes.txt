@@ -1,21 +1,6 @@
-Wilton RuaA
-Maria RuaC
-Jorge Carvalho
-r u
+Wilton
+Marinho
+Rua
+Francisco
 Wilton Marinho
-Wilton Ribeiro
-Marinho ua
-Professora Alice
-Elisa de
-Melo Wilton
-Ribeiro Marinho
-ua Francisco
-Bezerra de
-Azevedo, 227
-Maria Ariane
-ua Francisco
-Bezerra, 139,
-Wilton Ribeiro
-ua Alice
-Elisa, 227
-Wilton Marinho ua Francisco Bezerra, 139
+Rua Francisco

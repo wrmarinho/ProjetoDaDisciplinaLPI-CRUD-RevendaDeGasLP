@@ -42,6 +42,7 @@ int main(){
         cout << "\t6. Exibir Relatorio\n";
         cout << "\t7. Cadastrar cliente\n";
         cout << "\t8. Listar clientes\n";
+        cout << "\t9. Excluir clientes\n";
         cout << "\n\tEscolha uma opcao: ";
         cin >> opcao;
         system("cls");
@@ -132,11 +133,15 @@ int main(){
                 cin.ignore();
                 getline(cin, nome);
                 cout << "\tDigite o endereço: ";
-                cin.ignore();
                 getline(cin, endereco);
                 gerCliente.inserir(new Cliente(nome, endereco));
                 cout << "\n\tCliente inserido com sucesso!" << endl;
-                LimparVolta();
+                cout << "\n\tDigite enter para voltar ao menu.";
+                char menu;
+                scanf("%c", &menu);
+                if(menu == '\n'){
+                system("cls");
+                }
                 break;
             }
 /*
@@ -166,6 +171,22 @@ int main(){
                 if(menu == '\n'){
                 system("cls");
                 }
+                break;
+            }
+
+            case 9: {
+                cout << "\n\t-----Sistema de Cadastro e Venda de Produtos-----\n\n";
+                string nome;
+                cout << "\tDigite o nome do cliente a ser removido: ";
+                cin >> nome;
+                int indice = gerCliente.pesquisar(nome);
+                if (indice != -1) {
+                    gerCliente.remover(indice);
+                    cout << "\tCliente removido com sucesso." << endl;
+                } else {
+                    cout << "\tCliente nao encontrado." << endl;
+                }
+                LimparVolta();
                 break;
             }
 
