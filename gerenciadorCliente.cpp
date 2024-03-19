@@ -60,7 +60,7 @@ void GerenciadorCliente::carregarDados() {
     if (arquivoEntrada.is_open()) {
         string nome;
         string endereco;
-        while (arquivoEntrada >> nome >> endereco) {
+        while (getline(arquivoEntrada, nome)&&(getline(arquivoEntrada, endereco))) {
             inserir(new Cliente(nome, endereco));
         }
         arquivoEntrada.close();
@@ -71,7 +71,7 @@ void GerenciadorCliente::salvarDados() const {
     ofstream arquivoSaida(arquivo);
     if (arquivoSaida.is_open()) {
         for (const auto& cliente : clientes) {
-            arquivoSaida << cliente->getNome() << " " << cliente->getEndereco()<< std::endl;
+            arquivoSaida << cliente->getNome() << "\n" << cliente->getEndereco()<< std::endl;
         }
         arquivoSaida.close();
     }
