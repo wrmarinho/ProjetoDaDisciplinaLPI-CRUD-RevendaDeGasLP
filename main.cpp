@@ -70,28 +70,41 @@ int main(){
             case 2: {
                 cout << "\n\t-----Sistema de Cadastro e Venda de Produtos-----\n\n";
                 gerenciador.listarTodos();
-                LimparVolta();
+                cout << "\n\tDigite enter para voltar ao menu.";
+                char menu;
+                scanf("%*c");
+                scanf("%c", &menu);
+                if(menu == '\n'){
+                system("cls");
+                }
                 break;
             }
             case 3: {
                 cout << "\n\t-----Sistema de Cadastro e Venda de Produtos-----\n\n";
                 string nome;
                 cout << "\tDigite o nome do produto: ";
-                cin >> nome;
+                cin.ignore();
+                getline(cin, nome);
                 int indice = gerenciador.pesquisar(nome);
                 if (indice != -1) {
                     gerenciador.obterProduto(indice)->exibir();
                 } else {
                     cout << "\tProduto nao encontrado." << endl;
                 }
-                LimparVolta();
+                cout << "\n\tDigite enter para voltar ao menu.";
+                char menu;
+                scanf("%c", &menu);
+                if(menu == '\n'){
+                system("cls");
+                }
                 break;
             }
             case 4: {
                 cout << "\n\t-----Sistema de Cadastro e Venda de Produtos-----\n\n";
                 string nome;
                 cout << "\tDigite o nome do produto a ser vendido: ";
-                cin >> nome;
+                cin.ignore();
+                getline(cin, nome);
                 int indice = gerenciador.pesquisar(nome);
                 if (indice != -1) {
                     int quantidadeVendida;
@@ -101,14 +114,21 @@ int main(){
                 } else {
                     cout << "\tProduto nao encontrado." << endl;
                 }
-                LimparVolta();
+                cout << "\n\tDigite enter para voltar ao menu.";
+                char menu;
+                scanf("%*c");
+                scanf("%c", &menu);
+                if(menu == '\n'){
+                system("cls");
+                }
                 break;
             }
             case 5: {
                 cout << "\n\t-----Sistema de Cadastro e Venda de Produtos-----\n\n";
                 string nome;
                 cout << "\tDigite o nome do produto a ser removido: ";
-                cin >> nome;
+                cin.ignore();
+                getline(cin, nome);
                 int indice = gerenciador.pesquisar(nome);
                 if (indice != -1) {
                     gerenciador.remover(indice);
@@ -116,7 +136,12 @@ int main(){
                 } else {
                     cout << "\tProduto nao encontrado." << endl;
                 }
-                LimparVolta();
+                 cout << "\n\tDigite enter para voltar ao menu.";
+                char menu;
+                scanf("%c", &menu);
+                if(menu == '\n'){
+                system("cls");
+                }
                 break;
             }
             case 6: {
@@ -179,7 +204,8 @@ int main(){
                 cout << "\n\t-----Sistema de Cadastro e Venda de Produtos-----\n\n";
                 string nome;
                 cout << "\tDigite o nome do cliente a ser removido: ";
-                cin >> nome;
+                cin.ignore();
+                getline(cin, nome);
                 int indice = gerCliente.pesquisar(nome);
                 if (indice != -1) {
                     gerCliente.remover(indice);
@@ -187,7 +213,12 @@ int main(){
                 } else {
                     cout << "\tCliente nao encontrado." << endl;
                 }
-                LimparVolta();
+                cout << "\n\tDigite enter para voltar ao menu.";
+                char menu;
+                scanf("%c", &menu);
+                if(menu == '\n'){
+                system("cls");
+                }
                 break;
             }
 
