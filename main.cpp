@@ -129,9 +129,11 @@ int main(){
                 string endereco;
                 cout << "\n\t-----Sistema de Cadastro e Venda de Produtos-----\n\n";
                 cout << "\tDigite o nome do cliente: ";
-                cin >> nome;
+                cin.ignore();
+                getline(cin, nome);
                 cout << "\tDigite o endereço: ";
-                cin >> endereco;
+                cin.ignore();
+                getline(cin, endereco);
                 gerCliente.inserir(new Cliente(nome, endereco));
                 cout << "\n\tCliente inserido com sucesso!" << endl;
                 LimparVolta();
@@ -157,7 +159,13 @@ int main(){
             case 8: {
                 cout << "\n\t-----Sistema de Cadastro e Venda de Produtos-----\n\n";
                 gerCliente.listarTodos();
-                LimparVolta();
+                cout << "\n\tDigite enter para voltar ao menu.";
+                char menu;
+                scanf("%*c");
+                scanf("%c", &menu);
+                if(menu == '\n'){
+                system("cls");
+                }
                 break;
             }
 
