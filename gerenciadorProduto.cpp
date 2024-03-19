@@ -58,7 +58,7 @@ void GerenciadorProduto::carregarDados() {
         string nome;
         int quantidade;
         float preco;
-        while (arquivoEntrada >> nome >> quantidade >> preco) {
+        while (getline(arquivoEntrada, nome) >> quantidade >> preco) {
             inserir(new Produto(nome, quantidade, preco));
         }
         arquivoEntrada.close();
@@ -69,7 +69,7 @@ void GerenciadorProduto::salvarDados() const {
     ofstream arquivoSaida(arquivo);
     if (arquivoSaida.is_open()) {
         for (const auto& produto : produtos) {
-            arquivoSaida << produto->getNome() << " " << produto->getQuantidade() << " " << produto->calcularValorTotal() << std::endl;
+            arquivoSaida << produto->getNome() << "\n" << produto->getQuantidade() << " " << produto->calcularValorTotal() << std::endl;
         }
         arquivoSaida.close();
     }
