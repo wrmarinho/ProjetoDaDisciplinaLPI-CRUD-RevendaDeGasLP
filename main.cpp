@@ -6,10 +6,10 @@
 #include "produto.h"
 #include "gerenciadorProduto.h"
 #include "gerenciadorCliente.h"
+#include "gerenciadoFuncionario.h"
 #include "pessoa.h"
 #include "cliente.h"
 #include "funcionario.h"
-
 using namespace std;
 
 void LimparVolta(){
@@ -28,6 +28,7 @@ int main(){
     
     GerenciadorProduto gerenciador;
     GerenciadorCliente gerCliente;
+    GerenciadorFuncionario gerFuncionario;
 
     int opcao;
 
@@ -42,6 +43,9 @@ int main(){
         cout << "\t7. Cadastrar cliente\n";
         cout << "\t8. Listar clientes\n";
         cout << "\t9. Excluir clientes\n";
+        cout << "\t10. Cadastrar funcionario\n";
+        cout << "\t11. Listar funcionarios\n";
+        cout << "\t12. Excluir funcionarios\n";
         cout << "\t0. Sair\n";
         cout << "\n\tEscolha uma opcao: ";
         cin >> opcao;
@@ -212,6 +216,67 @@ int main(){
                     cout << "\tCliente removido com sucesso." << endl;
                 } else {
                     cout << "\tCliente nao encontrado." << endl;
+                }
+                cout << "\n\tDigite enter para voltar ao menu.";
+                char menu;
+                scanf("%c", &menu);
+                if(menu == '\n'){
+                system("cls");
+                }
+                break;
+            }
+
+            case 10: {
+                string nome;
+                string cargo;
+                int id;
+                float salario;
+                cout << "\n\t-----Sistema de Cadastro e Venda de Produtos-----\n\n";
+                cout << "\tDigite o nome do funcionario: ";
+                cin.ignore();
+                getline(cin, nome);
+                cout << "\tDigite o cargo: ";
+                getline(cin, cargo);
+                cout << "\tDigite o identificador: ";
+                cin >> id;
+                cout << "\tDigite o salario: ";
+                cin >> salario;
+                gerFuncionario.inserir(new Funcionario(nome, cargo, id, salario));
+                cout << "\n\tFuncionario inserido com sucesso!" << endl;
+                cout << "\n\tDigite enter para voltar ao menu.";
+                char menu;
+                scanf("%c", &menu);
+                if(menu == '\n'){
+                system("cls");
+                }
+                break;
+            }
+
+            case 11: {
+                cout << "\n\t-----Sistema de Cadastro e Venda de Produtos-----\n\n";
+                gerFuncionario.listarTodos();
+                cout << "\n\tDigite enter para voltar ao menu.";
+                char menu;
+                scanf("%*c");
+                scanf("%c", &menu);
+                if(menu == '\n'){
+                system("cls");
+                }
+                break;
+            }
+
+            case 12: {
+                cout << "\n\t-----Sistema de Cadastro e Venda de Produtos-----\n\n";
+                string nome;
+                cout << "\tDigite o nome do funcionario a ser removido: ";
+                cin.ignore();
+                getline(cin, nome);
+                int indice = gerFuncionario.pesquisar(nome);
+                if (indice != -1) {
+                    gerFuncionario.remover(indice);
+                    cout << "\tFuncionario removido com sucesso." << endl;
+                } else {
+                    cout << "\tFuncionario nao encontrado." << endl;
                 }
                 cout << "\n\tDigite enter para voltar ao menu.";
                 char menu;
