@@ -27,6 +27,7 @@ int main(){
     SetConsoleOutputCP(CP_UTF8);
     
     GerenciadorProduto gerenciador;
+    GerenciadorCliente gerCliente;
 
     int opcao;
 
@@ -40,7 +41,7 @@ int main(){
         cout << "\t5. Remover\n";
         cout << "\t6. Exibir Relatorio\n";
         cout << "\t7. Cadastrar cliente\n";
-        cout << "\t8. Cadastrar funcionário\n";
+        cout << "\t8. Listar clientes\n";
         cout << "\n\tEscolha uma opcao: ";
         cin >> opcao;
         system("cls");
@@ -124,6 +125,20 @@ int main(){
             }
 
             case 7: {
+                string nome;
+                string endereco;
+                cout << "\n\t-----Sistema de Cadastro e Venda de Produtos-----\n\n";
+                cout << "\tDigite o nome do cliente: ";
+                cin >> nome;
+                cout << "\tDigite o endereço: ";
+                cin >> endereco;
+                gerCliente.inserir(new Cliente(nome, endereco));
+                cout << "\n\tCliente inserido com sucesso!" << endl;
+                LimparVolta();
+                break;
+            }
+/*
+            case 7: {
                 cout << "\n\t-----Sistema de Cadastro e Venda de Produtos-----\n\n";
                 cout << "\n\t-----Cadastrar cliente-----\n\n";
                 string nome;
@@ -138,13 +153,14 @@ int main(){
                 LimparVolta();
                 break;
             }
-
+*/
             case 8: {
                 cout << "\n\t-----Sistema de Cadastro e Venda de Produtos-----\n\n";
-                cout << "\timplantar";
+                gerCliente.listarTodos();
                 LimparVolta();
                 break;
             }
+
             default: {
                 cout << "\n\t-----Sistema de Cadastro e Venda de Produtos-----\n\n";
                 cout << "\tOpcao invalida." << endl;

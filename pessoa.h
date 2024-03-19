@@ -4,8 +4,8 @@
 using namespace std;
 
 class Pessoa {
-protected:
-    string nome;
+    protected:
+        string nome;
 public:
     Pessoa(string _nome) : nome(_nome) {}
     virtual ~Pessoa() {}

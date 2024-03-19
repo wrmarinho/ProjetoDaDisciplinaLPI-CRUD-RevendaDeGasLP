@@ -71,7 +71,7 @@ void GerenciadorCliente::salvarDados() const {
     ofstream arquivoSaida(arquivo);
     if (arquivoSaida.is_open()) {
         for (const auto& cliente : clientes) {
-            arquivoSaida << cliente->getNome() << std::endl;
+            arquivoSaida << cliente->getNome() << " " << cliente->getEndereco()<< std::endl;
         }
         arquivoSaida.close();
     }
